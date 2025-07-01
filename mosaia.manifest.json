@@ -1,0 +1,52 @@
+{
+  "name": "Slack Connector",
+  "description": "A tool to read channel history and post messages to Slack.",
+  "schema": {
+    "functions": [
+      {
+        "name": "readChannelHistory",
+        "description": "Reads the most recent messages from a Slack channel.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "channelId": {
+              "type": "string",
+              "description": "The ID of the Slack channel."
+            },
+            "limit": {
+              "type": "integer",
+              "description": "Number of messages to fetch.",
+              "default": 5
+            }
+          },
+          "required": ["channelId"]
+        }
+      },
+      {
+        "name": "postMessage",
+        "description": "Posts a message to a Slack channel.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "channelId": {
+              "type": "string",
+              "description": "The ID of the Slack channel."
+            },
+            "text": {
+              "type": "string",
+              "description": "The message text to post."
+            }
+          },
+          "required": ["channelId", "text"]
+        }
+      }
+    ]
+  },
+  "environment": [
+    {
+      "name": "SLACK_BOT_TOKEN",
+      "description": "Your Slack Bot User OAuth Token (starts with xoxb-).",
+      "required": true
+    }
+  ]
+} 
