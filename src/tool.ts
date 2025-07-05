@@ -19,10 +19,12 @@ export async function handler(event: any): Promise<any> {
     const { action, channel_id, limit = 5, text } = body.args;
     
     if (action === 'read') {
+      // Accept text as an empty string for 'read' action
       return await readChannelHistory({ channelId: channel_id, limit });
     } else if (action === 'post') {
-      if (!text) {
-        throw new Error('Text is required for post action');
+      // For 'post', text must be a non-empty string
+      if (typeof text !== 'string' || text.trim() === '') {
+        throw new Error('Text is required for post action and cannot be empty');
       }
       return await postMessage({ channelId: channel_id, text });
     } else {

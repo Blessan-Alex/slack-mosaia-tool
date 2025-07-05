@@ -26,12 +26,13 @@
           },
           "text": {
             "type": "string",
-            "description": "The message text to post (only for post action)"
+            "description": "The message text to post (only for post action). For 'read' action, provide an empty string."
           }
         },
         "required": [
           "action",
-          "channel_id"
+          "channel_id",
+          "text"
         ],
         "additionalProperties": false
       }
